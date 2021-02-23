@@ -19,7 +19,7 @@ export default class Time extends EventEmitter {
   tick() {
     // Call tick method on each frame
     setTimeout(() => {
-      window.requestAnimationFrame(this.tick)
+      this.ticker = window.requestAnimationFrame(this.tick)
       this.trigger('tick')
     }, 1000 / 60)
 
@@ -41,6 +41,6 @@ export default class Time extends EventEmitter {
   }
   // Cancel animation frame
   stop() {
-    window.cancelAnimationFrame(this.ticker)
+    if (this.ticker !== undefined) window.cancelAnimationFrame(this.ticker)
   }
 }
